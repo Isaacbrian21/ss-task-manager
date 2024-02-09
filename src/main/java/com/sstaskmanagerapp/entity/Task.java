@@ -1,5 +1,6 @@
 package com.sstaskmanagerapp.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
@@ -9,15 +10,26 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Task {
 
-    private Integer id;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "PROTOCOL")
+    private Long id;
+
+    @Column(name = "TITLE")
     private String title;
 
+    @Lob
+    @Column(name = "DESCRIPTION")
     private String description;
 
-    private Date validateDate;
 
+    @Column(name = "EXPIRATION_DATE")
+    private Date expirationDate;
+
+    @Column(name = "STATUS")
     private TaskStatus status;
 }
