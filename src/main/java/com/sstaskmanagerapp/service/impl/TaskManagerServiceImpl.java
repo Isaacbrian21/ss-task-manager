@@ -52,7 +52,6 @@ public class TaskManagerServiceImpl implements TaskManagerService {
         if (task.isPresent()) {
             taskToBeSaved = repository.save(task.get());
         }
-
         return taskToBeSaved;
     }
 
