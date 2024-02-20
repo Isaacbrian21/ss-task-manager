@@ -31,5 +31,6 @@ public class Task {
     private Date expirationDate;
 
     @Column(name = "STATUS")
+    @Enumerated(EnumType.STRING)
     private TaskStatus status;
 }
