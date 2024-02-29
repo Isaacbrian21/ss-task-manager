@@ -1,5 +1,6 @@
 package com.sstaskmanagerapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "Tasks")
 @Entity
 public class Task {
 
@@ -23,14 +25,46 @@ public class Task {
     private String title;
 
     @Lob
-    @Column(name = "DESCRIPTION")
+    @Column(name = "TASK_DESCRIPTION")
     private String description;
 
 
     @Column(name = "EXPIRATION_DATE")
     private Date expirationDate;
 
-    @Column(name = "STATUS")
+    @Column(name = "TASK_STATUS")
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
